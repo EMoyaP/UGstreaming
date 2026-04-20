@@ -1,68 +1,81 @@
-# UGstreaming (Android)
+# UGstreaming
 
-Aplicacion Android de **UGstreaming** basada en WebView, construida a partir de `recomienda.html` y optimizada para uso movil.
+UGstreaming es una app Android para descubrir peliculas y series disponibles en streaming en Espana.
 
-## Estado del proyecto
+La aplicacion combina datos de catalogo (TMDB), disponibilidad por plataforma y una capa de resumen/analisis asistida por IA para ofrecer fichas mas utiles antes de elegir que ver.
 
-- Version Android funcional y probada.
-- APK generada para pruebas locales.
-- Enfoque actual: cliente Android (WebView) + assets web embebidos.
+## Que hace la app
 
-## Caracteristicas
+- Muestra recomendaciones de peliculas y series para Espana.
+- Permite filtrar por plataforma, genero, tipo de contenido y orden.
+- Consulta disponibilidad por proveedor de streaming.
+- Abre detalle completo por titulo con informacion enriquecida.
+- Genera resumen argumental sin spoilers mediante IA (segun proveedor habilitado).
+- Muestra metadatos relevantes: reparto principal, resenas y enlaces de referencia.
+- Soporta interfaz multilenguaje (espanol, ingles, frances).
 
-- Carga local del frontend desde `assets/web/recomienda.html`.
-- Cache y almacenamiento local habilitados para mejorar rendimiento.
-- Interfaz Android nativa con `Material 3`, barra superior y `pull-to-refresh`.
-- Navegacion hacia atras integrada con historial del WebView.
-- Splash screen y recursos de app adaptados para UGstreaming.
+## Arquitectura tecnica
 
-## Estructura
+El proyecto publicado corresponde a la version Android probada.
 
-- `android-app/`: proyecto Android (Gradle).
-- `recomienda.html`: fuente web original.
-- `15c6f351-7108-4176-bc3a-35c9eb39992c.png`: icono base usado en la app.
-- `LICENSE`: licencia de uso no comercial.
+- `android-app/`: contenedor Android nativo (Kotlin + WebView).
+- `android-app/app/src/main/assets/web/recomienda.html`: frontend principal con la logica funcional.
+- `android-app/app/src/main/java/com/pelisyseries/app/MainActivity.kt`: configuracion WebView, navegacion, refresco y rendimiento.
+
+### Stack
+
+- Kotlin (Android)
+- Android WebView
+- Material 3
+- Gradle (wrapper)
+- HTML/CSS/JavaScript embebido en assets
+
+## Rendimiento y UX en Android
+
+- Carga local de la web desde assets para arranque rapido.
+- Cache y almacenamiento local habilitados.
+- Aceleracion por hardware en WebView.
+- Pull-to-refresh.
+- Toolbar nativa con navegacion atras.
+- Splash screen e iconografia adaptada a UGstreaming.
 
 ## Requisitos
 
 - JDK 17
 - Android SDK (API 35 recomendado)
-- Gradle Wrapper (incluido en `android-app/`)
+- Dispositivo Android 7.0+ (minSdk 24)
 
 ## Compilacion
 
 Desde `android-app`:
-
-```bash
-./gradlew assembleDebug
-./gradlew assembleRelease
-```
-
-En Windows PowerShell:
 
 ```powershell
 .\gradlew.bat assembleDebug
 .\gradlew.bat assembleRelease
 ```
 
-## APK de debug
-
-Salida esperada:
+Salida principal de debug:
 
 - `android-app/app/build/outputs/apk/debug/app-debug.apk`
 
 Instalacion por ADB:
 
-```bash
+```powershell
 adb install -r android-app/app/build/outputs/apk/debug/app-debug.apk
 ```
 
-## Notas de licencia
+## Licencia
 
-Este repositorio se distribuye para **uso no comercial**. Revisa el archivo `LICENSE` para los terminos aplicables.
+Uso no comercial. Consulta [LICENSE](LICENSE).
 
-## Roadmap recomendado
+## Estado actual
 
-- Firma release con keystore de produccion.
-- Separar claves/API sensibles del HTML embebido hacia configuracion segura.
-- Pipeline CI para build automatica de APK.
+- Version Android funcional y validada en pruebas locales.
+- Base preparada para evolucion a version release firmada y publicable.
+
+## Roadmap
+
+- Firma de APK/AAB para distribucion.
+- Externalizar y securizar claves/API sensibles.
+- CI/CD para builds automaticas.
+- Observabilidad de errores y metricas de uso.
