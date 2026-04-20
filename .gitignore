@@ -1,0 +1,18 @@
+# Android / Gradle
+**/.gradle/
+**/build/
+local.properties
+
+# Generated APKs
+*.apk
+
+# Local tooling / temporary
+tools/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Secrets override files
+*.keystore
+*.jks

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UGstreaming</string>
+    <string name="refresh">Recargar</string>
+    <string name="network_error">Error de red. Mostrando contenido cacheado si existe.</string>
+</resources>
